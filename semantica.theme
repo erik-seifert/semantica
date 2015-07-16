@@ -1,0 +1,100 @@
+<?php
+
+use \Drupal\Component\Utility\SafeMarkup;
+use \Drupal\Core\Template\Attribute;
+
+function semantica_preprocess_menu_local_task(&$variables) {
+  $link = $variables ['element']['#link'];
+  $link += array(
+      'localized_options' => array(),
+  );
+  $link_text = $link ['title'];
+
+  if (!empty($variables ['element']['#active'])) {
+    $variables ['is_active'] = TRUE;
+
+    // Add text to indicate active tab for non-visual users.
+    $active = SafeMarkup::format('<span class="visually-hidden">@label</span>', array('@label' => t('(active tab)')));
+    $link_text = t('@local-task-title@active', array('@local-task-title' => $link_text, '@active' => $active));
+  }
+  else {
+    // @todo Remove this once https://www.drupal.org/node/2338081 is fixed.
+    $link_text = SafeMarkup::checkPlain($link_text);
+  }
+
+  $link ['localized_options']['set_active_class'] = TRUE;
+
+  $variables ['link'] = array(
+      '#type' => 'link',
+      '#title' => $link_text,
+      '#url' => $link ['url'],
+      '#attributes' => array('class' => array('item')),
+      '#options' => $link ['localized_options'],
+  );
+  if ( isset($variables['is_active']) ) {
+    $variables['link']['#attributes']['class'][] = 'active' ;
+  }
+}
+
+function semantica_preprocess(&$variables, $hook) {
+  //dsm($hook) ;
+}
+
+function semantica_preprocess_views_view_table(&$variables) {
+  $variables['attributes'] = array('class' => array('ui','table')) ;
+}
+
+function semantica_preprocess_form_element(&$variables) {
+  if ( $variables['element']['#required'] ) {
+    $variables['required'] = true ;
+  }
+  $variables['attributes']['class'][] = 'field' ;
+}
+
+function semantica_preprocess_form(&$variables) {
+  $variables['attributes']['class'][] = 'form' ;
+  $variables['attributes']['class'][] = 'ui' ;
+}
+function semantica_preprocess_input(&$variables) {
+  if ( $variables['element']['#type'] == 'submit' ) {
+    $variables['attributes']['class'][] = 'ui' ;
+  }
+}
+
+function semantica_preprocess_container(&$variables) {
+
+  if ( $variables['element']['#type'] == 'view' ) {
+    $variables['attributes']['class'][] = 'ui' ;
+    $variables['attributes']['class'][] = 'segment' ;
+  } elseif ( $variables['element']['#type'] == 'action' ) {
+    $variables['attributes']['class'][] = 'ui' ;
+    $variables['attributes']['class'][] = 'buttons' ;
+  } else {
+    $variables['attributes']['class'][] = 'ui' ;
+    $variables['attributes']['class'][] = 'container' ;
+  }
+}
+function semantica_preprocess_select(&$variables) {
+
+    $variables['attributes']['class'][] = 'ui' ;
+    $variables['attributes']['class'][] = 'dropdown' ;
+    $variables['attributes']['class'][] = 'fluid' ;
+}
+
+function semantica_preprocess_region(&$variables) {
+  $variables['attributes']['class'][] = 'ui' ;
+  $variables['attributes']['class'][] = 'container' ;
+}
+
+function semantica_preprocess_menu(&$variables) {
+ // dsm($variables['items']) ;
+//   $variables['attributes']['class'][] = 'ui' ;
+//   $variables['attributes']['class'][] = 'menu' ;
+//   $variables['attributes']['class'][] = 'vertical' ;
+}
+
+function semantic_preprocess_dropbutton_wrapper($variables) {
+
+}
+
+

@@ -1,0 +1,18 @@
+name: Semantica
+type: theme
+description: 'Admin theme on semantic ui.'
+package: Custom
+core: 8.x
+
+libraries:
+  - semantica/all
+
+#stylesheets-remove:
+#  - core/assets/vendor/normalize-css/normalize.css
+#  - core/modules/system/css/system.theme.css
+
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'Sidebar first'
+  footer: Footer
