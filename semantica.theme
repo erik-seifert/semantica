@@ -93,8 +93,12 @@ function semantica_preprocess_menu(&$variables) {
 //   $variables['attributes']['class'][] = 'vertical' ;
 }
 
-function semantic_preprocess_dropbutton_wrapper($variables) {
-
+function semantica_preprocess_dropbutton_wrapper($variables) {
+  dsm($variables) ;
 }
 
-
+function _semantica_get_icon_for_title() {
+  static $icons = array(
+      'edit' => array('')
+  );
+}
