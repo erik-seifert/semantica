@@ -2,9 +2,9 @@ all:
   version: 2.x
   css:
     theme:
-      libs/semantic-ui/dist/semantic.min.css: {}
+      libs/semantic/dist/semantic.min.css: {}
   js:
-    libs/semantic-ui/dist/semantic.min.js: {}
+    libs/semantic/dist/semantic.min.js: {}
     js/init.js: {}
   dependencies:
     - core/jquery

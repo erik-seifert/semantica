@@ -2,3 +2,5 @@ libs
 .buildpath
 .project
 .settings
+semantic
+node_modules
