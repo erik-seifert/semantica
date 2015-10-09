@@ -47,7 +47,7 @@
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
   {% endif %}
   {{ title_prefix }}
-  <h2{{ title_attributes }}>{{ configuration.label }}</h2>
+  <h2{{ title_attributes.addClass('ui','dividing','header') }}>{{ configuration.label }}</h2>
   {{ title_suffix }}
 
   {# Menu. #}

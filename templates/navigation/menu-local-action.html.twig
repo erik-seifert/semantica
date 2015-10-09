@@ -12,4 +12,4 @@
  * @ingroup themeable
  */
 #}
-<li{{ attributes }}>{{ link }}</li>
+{{ link( link['#title'] , link['#url'], attributes.addClass('ui','button')) }}

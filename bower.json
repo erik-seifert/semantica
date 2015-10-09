@@ -13,6 +13,16 @@
     "tests"
   ],
   "dependencies": {
-    "CaptionSS": "captionss#~1.1.0"
+    "CaptionSS": "captionss#~1.1.0",
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4"
+  },
+  "overrides": {
+    "jquery": {
+      "ignore": true
+    },
+    "jquery-ui": {
+      "ignore": true
+    }
   }
 }

@@ -23,6 +23,7 @@ function semantica_preprocess_menu_local_task(&$variables) {
     $link_text = SafeMarkup::checkPlain($link_text);
   }
 
+
   $link ['localized_options']['set_active_class'] = TRUE;
 
   $variables ['link'] = array(
@@ -81,7 +82,7 @@ function semantica_preprocess_select(&$variables) {
 }
 
 function semantica_preprocess_menu__account(&$variables) {
-   _semantica_set_menu($variables);
+   _semantica_set_vertical_menu($variables);
 }
 
 function semantica_preprocess_menu__tools(&$variables) {

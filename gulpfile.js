@@ -72,26 +72,6 @@ gulp.task('clean', function (cb) {
 	del(['vendor/**/*']);
 });
 
-gulp.task('watch', function() {
-  gulp.watch(['scss/**/*.scss'], ['sass']);
-  gulp.watch(['js/**/*.js'], ['jshint']);
-  gulp.watch(['libs/semantic/**/*.less',
-              'libs/semantic/**/*.config',
-              'libs/semantic/**/*.variables',
-              'libs/semantic/**/*.overrides'], ['semantic']);
-});
-
-
-gulp.task('default',['sass','watch','concat_css','concat'], function() {
-})
-
-gulp.task('build',['clean','sass'], function() {
-})
-
-
-gulp.task('clean',['clean'], function() {
-})
-
 gulp.task( 'semantic', function () {
     return gulp.src( './libs/semantic/gulpfile.js', { read: false }  )
         .pipe( plugins.chug({
@@ -99,3 +79,21 @@ gulp.task( 'semantic', function () {
             tasks:  [ 'build' ]
         }) );
 } );
+
+gulp.task('watch', function() {
+  gulp.watch(['scss/**/*.scss'], ['sass']);
+  gulp.watch(['js/**/*.js'], ['jshint']);
+  gulp.watch(['bower.json'], ['concat_css','concat']);
+  gulp.watch(['libs/semantic/**/*.less',
+              'libs/semantic/**/*.config',
+              'libs/semantic/**/*.variables',
+              'libs/semantic/**/*.overrides'], ['semantic']);
+});
+
+gulp.task('default',['sass','concat_css','concat','watch'], function() {})
+
+gulp.task('clean',function() {
+	del('vendor/**/*');
+})
+
+gulp.task('rebuild',['clean','semantic','sass','concat_css','concat'],function() {});

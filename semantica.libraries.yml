@@ -10,7 +10,7 @@ theme:
   version: 1.x
   css:
     theme:
-      vendor/css/style.css: {}
+      vendor/css/styles.css: {}
 bundles:
   version: 1.x
   css:
