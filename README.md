@@ -20,6 +20,7 @@ npm install
 - semantic ( rebuild semantic ui to ./vendor/semantic )
 - concat ( get all js from bower components and bundle these in ./vendor/js )
 - concat_css ( get all css from bower components and bundle these in ./vendor/css )
+- watch ( watch all bower, scss and js files )
 - rebuild ( clean all and rebuild all )
 
 ## Add another sass library
