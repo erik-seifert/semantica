@@ -8,10 +8,14 @@ https://nodejs.org
 
 Clone repository into themes folder
 
+
 ```
 cd themes/semantica
 npm install
 ```
+Install semantic ui in libs/semantic folder.
+Set output folder to vendor/semantic
+
 ## GULP Tasks
 
 - sass ( compile all source in ./scss )
