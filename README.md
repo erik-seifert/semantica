@@ -14,7 +14,8 @@ cd themes/semantica
 npm install
 ```
 Install semantic ui in libs/semantic folder.
-Set output folder to vendor/semantic
+
+Set output folder to ../../vendor/semantic
 
 ## GULP Tasks
 
