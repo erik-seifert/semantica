@@ -15,31 +15,37 @@
  * @ingroup themeable
  */
 #}
+{{ kint() }}
 {% import _self as menus %}
 
 {#
   We call a macro which calls itself to render the full tree.
   @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0) }}
+{{ menus.menu_links(items, attributes, 0, semantica_menu_dropdown) }}
 
-{% macro menu_links(items, attributes, menu_level) %}
+{% macro menu_links(items, attributes, menu_level, is_dropdown) %}
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <div {{ attributes.addClass('ui vertical menu') }}>
+      <div {{ attributes }}>
     {% else %}
-      <div class="menu ">
+      <div class="menu">
     {% endif %}
       {% for item in items %}
-        <div{{ item.attributes }}>
-          {{ link(item.title, item.url) }}
-          {% if item.below %}
-            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-          {% endif %}
-        </div>
+          {% if is_dropdown and item.below and menu_level == 0 %}
+            {{ link(item.title, item.url, item.attributes) }} 
+            <div class="ui pointing inline dropdown item">
+		      <i class="dropdown icon"></i>
+		      {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+		    </div>
+          {% else %}
+              {{ link(item.title, item.url, item.attributes) }} 
+	          {% if item.below %}
+	            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+	          {% endif %}
+	      {% endif %}
       {% endfor %}
     </div>
   {% endif %}
 {% endmacro %}
-

@@ -19,12 +19,12 @@
   <h2 id="primary-tabs-title" class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
   <nav role="navigation" class="is-horizontal is-collapsible" aria-labelledby="primary-tabs-title" data-drupal-nav-tabs>
     <button class="reset-appearance tabs__tab tabs__trigger" aria-label="{{ 'Primary tabs display toggle'|t }}" data-drupal-nav-tabs-trigger>&bull;&bull;&bull;</button>
-    <div class="ui secondary menu" data-drupal-nav-tabs-target>{{ primary }}</div>
+    <div class="ui secondary  menu" data-drupal-nav-tabs-target>{{ primary }}</div>
   </nav>
 {% endif %}
 {% if secondary %}
   <h2 id="secondary-tabs-title" class="visually-hidden">yyy-{{ 'Secondary tabs'|t }}</h2>
   <nav role="navigation" class="is-horizontal" aria-labelledby="secondary-tabs-title" data-drupal-nav-tabs>
-    <div class="ui tabular menu">{{ secondary }}</div>
+    <div class="ui secondary pointing menu">{{ secondary }}</div>
   </nav>
 {% endif %}

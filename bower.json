@@ -13,5 +13,6 @@
     "tests"
   ],
   "dependencies": {
+    "CaptionSS": "captionss#~1.1.0"
   }
 }

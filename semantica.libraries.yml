@@ -1,11 +1,18 @@
-all:
+semanticui:
   version: 2.x
   css:
     theme:
-      libs/semantic/dist/semantic.min.css: {}
+      vendor/semantic/dist/semantic.min.css: {}
   js:
-    libs/semantic/dist/semantic.min.js: {}
+    vendor/semantic/dist/semantic.min.js: {}
     js/init.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupalSettings
+theme:
+  version: 1.x
+  css:
+    theme:
+      vendor/css/style.css: {}
+bundles:
+  version: 1.x
+  css:
+    theme:
+      vendor/css/bundles.css: {}

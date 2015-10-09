@@ -4,6 +4,7 @@ use \Drupal\Component\Utility\SafeMarkup;
 use \Drupal\Core\Template\Attribute;
 
 function semantica_preprocess_menu_local_task(&$variables) {
+
   $link = $variables ['element']['#link'];
   $link += array(
       'localized_options' => array(),
@@ -75,30 +76,62 @@ function semantica_preprocess_container(&$variables) {
   }
 }
 function semantica_preprocess_select(&$variables) {
-
     $variables['attributes']['class'][] = 'ui' ;
     $variables['attributes']['class'][] = 'dropdown' ;
-    $variables['attributes']['class'][] = 'fluid' ;
 }
 
-function semantica_preprocess_region(&$variables) {
-  $variables['attributes']['class'][] = 'ui' ;
-  $variables['attributes']['class'][] = 'container' ;
+function semantica_preprocess_menu__account(&$variables) {
+   _semantica_set_menu($variables);
 }
 
-function semantica_preprocess_menu(&$variables) {
- // dsm($variables['items']) ;
-//   $variables['attributes']['class'][] = 'ui' ;
-//   $variables['attributes']['class'][] = 'menu' ;
-//   $variables['attributes']['class'][] = 'vertical' ;
+function semantica_preprocess_menu__tools(&$variables) {
+  _semantica_set_vertical_menu($variables);
 }
+
+function semantica_preprocess_menu__main(&$variables) {
+  $variables['semantica_menu_dropdown'] = true ;
+  _semantica_set_menu($variables);
+}
+
+function _semantica_set_vertical_menu(&$variables) {
+  _semantica_set_menu_item($variables['items']);
+  $variables['attributes'] = new Attribute(array('class' => array('ui','menu','vertical','fluid')));
+}
+
+function _semantica_set_menu_item(&$items) {
+  foreach ( $items as $k => $item ) {
+    $items[$k]['attributes']->addClass('item') ;
+    if ( !empty($item['below']) ) {
+      _semantica_set_menu_item($item['below']) ;
+    }
+  }
+}
+function _semantica_set_menu(&$variables) {
+  _semantica_set_menu_item($variables['items']);
+  $variables['attributes'] = new Attribute(array('class' => array('ui','menu','fluid')));
+}
+
 
 function semantica_preprocess_dropbutton_wrapper($variables) {
-  dsm($variables) ;
+
 }
 
 function _semantica_get_icon_for_title() {
   static $icons = array(
       'edit' => array('')
   );
+}
+
+function semantica_preprocess_page(&$variables) {
+  if ( empty($variables['page']['sidebar_first'])
+       && empty($variables['page']['sidebar_first']) ) {
+    $variables['semantica_content_grid'] = 'sixteen' ;
+  } elseif ( !empty($variables['page']['sidebar_first'])
+      && !empty($variables['page']['sidebar_second']) ) {
+    $variables['semantica_content_grid'] = 'ten' ;
+    $variables['semantica_sidebar_grid'] = 'three' ;
+  } else {
+    $variables['semantica_content_grid'] = 'twelve' ;
+    $variables['semantica_sidebar_grid'] = 'four' ;
+  }
 }
